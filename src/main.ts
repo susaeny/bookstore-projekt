@@ -8,5 +8,6 @@ if (environment.production) {
   enableProdMode();
 }
 
+//hier wird ein "normaler" Browser verwendet, man könnte auch Hybride-Apps bauen
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
