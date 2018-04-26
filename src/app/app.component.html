@@ -1,0 +1,18 @@
+<h1>
+  Welcome to {{ title }}!
+</h1>
+
+<div class="ui {{isLoggedIn()?'four':'three'}} item tabs menu">
+  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+  <a routerLink="books" routerLinkActive="active" class="item">Books</a>
+  <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">Administration</a>
+  <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
+</div>
+
+<router-outlet></router-outlet>
+
+
+<!--
+<bs-book-list *ngIf="listOn" (showDetailEvent)="showDetail($event)"></bs-book-list>
+<bs-book-detail *ngIf="listOn == false" [book]="book" (showListEvent)="showList()"></bs-book-detail>
+-->
