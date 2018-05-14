@@ -60,7 +60,7 @@ export class CartComponent implements OnInit {
         for (const price of this.incart) {
             this.neworder.price_netto += price.price;
         }
-        this.neworder.price_brutto = Math.round((this.neworder.price_netto * 1.2) + this.deliveryFee);
+        this.neworder.price_brutto = this.neworder.price_netto + this.deliveryFee;
         return this.neworder.price_netto;
     }
 
