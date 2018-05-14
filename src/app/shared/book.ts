@@ -1,8 +1,10 @@
 import {Author} from "./author";
 import {Image} from "./image";
+import {Rating} from "./rating";
 
 export {Author} from "./author";
 export {Image} from "./image";
+export {Rating} from "./rating"
 
 export class Book {
     constructor (
@@ -13,9 +15,11 @@ export class Book {
         public published: Date,
         public user_id: number,
         public subtitle?: string,
-        public rating?: number,
+        public ratings?: Rating[],
         public images?: Image[],
         public description?: string,
+        public price?: number,
+        public deleted?: boolean
     )
     {}
 }

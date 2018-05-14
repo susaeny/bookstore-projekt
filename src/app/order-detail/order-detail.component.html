@@ -1,0 +1,55 @@
+<!--<a *ngFor="let order of orders" class="item bs-book-list-item" [book]="order.books[0]"
+   [routerLink]="book.isbn"></a>-->
+
+
+<div class="ui grid" *ngIf="order">
+    <div class="sixteen wide column">
+        <h3 class="ui header">Bestellung NR.:{{order.id}}</h3>
+    </div>
+
+    <div class="sixteen wide column">
+    <div class="ui middle aligned selection divided list">
+        <h5 class="ui header">Bestellte Bücher:</h5>
+        <div *ngFor="let book of order.books">
+
+            <img class="ui tiny image" *ngIf="book.images" [src]="book.images[0]?.url">
+            <div class="content">
+                <div class="header">{{ book.title }}</div>
+                <div class="description"> {{ book.subtitle }}</div>
+                <div class="metadata">
+              <span *ngFor="let author of book.authors; last as l">
+                {{ author.firstname }} {{ author.lastname }}<span *ngIf="!l">, </span>
+              </span>
+                </div>
+                <div class="extra">ISBN {{ book.isbn }}</div>
+
+                <div class="extra">Preis: {{ book.price }} €</div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="six wide column">
+        <h5 class="ui header">Gesamtpreis der Bestellung: </h5>
+        <div class="content">
+            {{order.price_brutto}}€
+        </div>
+    </div>
+
+    <div class="six wide column">
+        <h5 class="ui header">Bestelldatum: </h5>
+        <div class="content">
+            {{order.ordered}}
+        </div>
+    </div>
+
+    <div class="six wide column">
+        <h5 class="ui header">Liefer- und Rechnungsadresse:</h5>
+        <div class="content">
+            <div>{{order.user.firstname}} {{order.user.name}}</div>
+            <div>{{order.user.street}}</div>
+            <div>{{order.user.plz}} {{order.user.location}}</div>
+        </div>
+    </div>
+</div>

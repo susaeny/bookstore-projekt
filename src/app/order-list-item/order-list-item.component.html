@@ -1,0 +1,14 @@
+<div class="content">
+  <div class="header">Bestellung Nr.{{ order.id }}</div>
+  <!-- <div class="description"> {{ book.subtitle }} </div> -->
+  <div class="metadata">
+      <span *ngFor="let book of order.books; last as l">
+        {{ book.title }} <span *ngIf="!l">, </span>
+      </span>
+  </div>
+  <div class="extra">Preis: {{ order.price_netto }} €</div>
+
+  <!-- ADDED -->
+  <div class="extra">Gesamtpreis: {{ order.price_brutto }} €</div>
+
+</div>

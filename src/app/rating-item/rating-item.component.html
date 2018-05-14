@@ -1,0 +1,37 @@
+<div class="ui hidden divider"></div>
+
+<div *ngIf="ratings.length >= 1" class="ui horizontal divider">
+  Bewertungen
+</div>
+
+  <div class="ui celled list">
+
+    <div *ngFor="let rating of ratings" class="item">
+      <img class="ui avatar image" src="../../assets/images/{{rating?.user_id}}.jpg">
+      <div class="content">
+        <!--<h3 class="header">{{rating.user_id}}</h3>-->
+        <h3 class="ui header">{{rating?.user.firstname}} {{rating?.user.name}} ({{rating?.user_id}})</h3>
+
+        <div class="two wide column">
+          <h5 class="ui header">Bewertung</h5>
+          <i *ngFor="let r of getRating(rating?.stars)" class="yellow star icon"></i>
+        </div>
+
+        <div *ngIf="rating.comment" class="two wide column">
+          <h5 class="ui header">Kommentar</h5>
+          <div class="description">{{rating.comment}}</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- <div *ngIf="!ratings" class="ui active dimmer">
+<div class="ui large text loader">Daten werden geladen...</div>
+</div> -->
+<div class="ui horizontal divider" *ngIf="ratings && !ratings.length">
+  Noch keine Bewertungen vorhanden
+</div>
+
+<div class="ui hidden divider"></div>
+

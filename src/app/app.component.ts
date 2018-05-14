@@ -1,10 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Book} from "./shared/book";
+import {AuthService} from "./shared/authentication.service";
 
 @Component({
   selector: 'bs-root',
-  //templateUrl: './app.component.html',
-  template: '<h1>Hello from the other side</h1>',
+  templateUrl: './app.component.html',
+  //template: '<bs-book-list></bs-book-list',
 })
 export class AppComponent {
-  //title = 'Bookstore';
+  title = 'Bookstore';
+  book: Book;
+
+  constructor(private authService: AuthService) {}
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
+
+  getLoginLabel() {
+    if(this.isLoggedIn()) {
+      return "Logout";
+    } else {
+      return "Login";
+    }
+  }
+
+
+
 }
