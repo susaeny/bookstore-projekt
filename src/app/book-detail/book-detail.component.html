@@ -1,77 +1,78 @@
 <div class="ui grid" *ngIf="book">
-  <div class="four wide column">
-    <img class="ui large image" *ngIf="book?.images && book?.images[0]"
-         [src]="book?.images[0].url">
-  </div>
-  <div class="twelve wide column">
-    <h1 class="ui header">{{ book?.title }}</h1>
-    <h3 class="ui header">{{ book?.subtitle }}</h3>
+    <div class="four wide column">
+        <img class="ui large image" *ngIf="book?.images && book?.images[0]"
+             [src]="book?.images[0].url">
+    </div>
+    <div class="twelve wide column">
+        <h1 class="ui header">{{ book?.title }}</h1>
+        <h3 class="ui header">{{ book?.subtitle }}</h3>
 
-    <!-- ADDED -->
-    <h3 class="ui header">{{book?.price}} €</h3>
+        <!-- ADDED -->
+        <h3 class="ui header">{{book?.price}} €</h3>
 
-    <div class="ui divider"></div>
-    <div class="ui grid">
+        <div class="ui divider"></div>
+        <div class="ui grid">
 
-      <div class="four wide column">
-        <h4 class="ui header">Autoren</h4>
-        <span *ngFor="let author of book?.authors; last as l">
+            <div class="four wide column">
+                <h4 class="ui header">Autoren</h4>
+                <span *ngFor="let author of book?.authors; last as l">
          {{ author.firstname }} {{ author.lastname }}<span *ngIf="!l">, </span>
        </span>
-      </div>
+            </div>
 
-      <div class="four wide column">
-        <h4 class="ui header">ISBN</h4>
-        {{ book?.isbn }}
-      </div>
-      <div class="four wide column">
-        <h4 class="ui header">Erschienen</h4>
-        {{ book?.published }}
-      </div>
-      <div class="four wide column">
-        <h4 class="ui header">Rating</h4>
-        <i *ngFor="let r of getAggregatedRating(book)" class="yellow star icon"></i>
-      </div>
+            <div class="four wide column">
+                <h4 class="ui header">ISBN</h4>
+                {{ book?.isbn }}
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header">Erschienen</h4>
+                {{ book?.published }}
+            </div>
+            <div class="four wide column">
+                <h4 class="ui header">Rating</h4>
+                <i *ngFor="let r of getAggregatedRating(book)" class="yellow star icon"></i>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="sixteen wide column">
-    <h3 class="ui header">Beschreibung</h3>
-    {{ book?.description }}
-  </div>
-
-
-  <!-- ADDED -->
-  <div class="sixteen wide column">
-    <h3 class="ui header">Preis</h3>
-    {{ book?.price }} €
-  </div>
-
-  <div class="sixteen wide column">
-    <div class="ui small images">
-      <img *ngFor="let thumbnail of book.images" [src]="thumbnail.url">
+    <div class="sixteen wide column">
+        <h3 class="ui header">Beschreibung</h3>
+        {{ book?.description }}
     </div>
-  </div>
+
+
+    <!-- ADDED -->
+    <div class="sixteen wide column">
+        <h3 class="ui header">Preis</h3>
+        {{ book?.price }} €
+    </div>
+
+    <div class="sixteen wide column">
+        <div class="ui small images">
+            <img *ngFor="let thumbnail of book.images" [src]="thumbnail.url">
+        </div>
+    </div>
 </div>
 
 <!--<a class="ui red button" [routerLink]="../"> Booklist </a>-->
 
 <button *ngIf="authService.isAdmin()" class="ui tiny red labeled icon button" (click)="removeBook()">
-  <i class="remove icon"></i>Delet Book
+    <i class="remove icon"></i>Delet Book
 </button>
 
-<a *ngIf="authService.isAdmin()" class="ui tiny yelow labeled icon button" [routerLink] = "['../../admin', book?.isbn]">
-  <i class="write icon"></i>Change Book
+<a *ngIf="authService.isAdmin()" class="ui tiny yelow labeled icon button" [routerLink]="['../../admin', book?.isbn]">
+    <i class="write icon"></i>Change Book
 </a>
 
 <a class="ui tiny green labeled icon right floated button" [routerLink]="['../../cart']" (click)="bs.addtocart(book)">
-  <i class="cart icon"></i>In den Warenkorb
+    <i class="cart icon"></i>In den Warenkorb
 </a>
 
-<a *ngIf="authService.isLoggedIn()" class="ui tiny blue labeled icon right floated button" [routerLink] = "['../../rating', book?.isbn]">
-  <i class="star icon"></i>Buch bewerten
+<a *ngIf="authService.isLoggedIn()" class="ui tiny blue labeled icon right floated button"
+   [routerLink]="['../../rating', book?.isbn]">
+    <i class="star icon"></i>Buch bewerten
 </a>
 
-<bs-rating-item [otherBook]="book" [bookIsbn]="book?.isbn"></bs-rating-item>
+<bs-rating-item></bs-rating-item>
 
 <div class="ui hidden divider"></div>
 

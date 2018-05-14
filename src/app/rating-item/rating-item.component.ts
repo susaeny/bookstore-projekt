@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {BookStoreService} from "../shared/book-store.service";
 import {Book} from "../shared/book";
 import {Rating} from "../shared/rating";
@@ -7,53 +7,45 @@ import {BookFactory} from "../shared/book-factory";
 
 
 @Component({
-  selector: 'bs-rating-item',
-  templateUrl: './rating-item.component.html',
-  styles: []
+    selector: 'bs-rating-item',
+    templateUrl: './rating-item.component.html',
+    styles: []
 })
 export class RatingItemComponent implements OnInit {
 
-  @Input() bookIsbn: number;
+    //@Input() bookIsbn: number;
 
-  book: Book = BookFactory.empty();
-  ratings: Rating[] = [];
+    book: Book = BookFactory.empty();
+    ratings: Rating[] = [];
 
-  @Input() otherBook: Book;
+    //@Input() otherBook: Book;
 
-  constructor(
-      private bs : BookStoreService,
-      private route: ActivatedRoute,
+    constructor(private bs: BookStoreService,
+                private route: ActivatedRoute,) {
+    }
 
-  ) { }
+    ngOnInit() {
+        const isbn = this.route.snapshot.params['isbn'];
 
-  ngOnInit() {
-
-
-    //this.curUserId = this.auth.getCurrentUserId();
-
-    const isbn = this.route.snapshot.params['isbn'];
-    console.log("isbn: " + isbn);
-
-    this.bs.getSingle(isbn).subscribe(book => {
-      this.book = book;
-      this.initRating();
-    });
-  }
+        this.bs.getSingle(isbn).subscribe(book => {
+            this.book = book;
+            this.initRating();
+        });
+    }
 
 
-  initRating(){
-    this.bs.getRatings(this.book.id).subscribe(res => {
-      this.ratings = res;
-    });
-    console.log("HELLO RATING" + this.ratings);
-  }
+    initRating() {
+        this.bs.getRatings(this.book.id).subscribe(res => {
+            this.ratings = res;
+        });
+    }
 
-  getRating (num:number) {
-    return new Array(num);
-  }
+    getRating(num: number) {
+        return new Array(num);
+    }
 
-  getRandomNum() {
-    return Math.floor(Math.random() * 12) + 1
+    getRandomNum() {
+        return Math.floor(Math.random() * 12) + 1
 
-  }
+    }
 }

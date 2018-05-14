@@ -8,25 +8,24 @@
     </div>
 
     <div class="sixteen wide column">
-    <div class="ui middle aligned selection divided list">
-        <h5 class="ui header">Bestellte Bücher:</h5>
-        <div *ngFor="let book of order.books">
+        <div class="ui middle aligned selection divided list">
 
-            <img class="ui tiny image" *ngIf="book.images" [src]="book.images[0]?.url">
-            <div class="content">
-                <div class="header">{{ book.title }}</div>
-                <div class="description"> {{ book.subtitle }}</div>
-                <div class="metadata">
+            <h5 class="ui header">Bestellte Bücher:</h5>
+            <div *ngFor="let book of order.books">
+                <img class="ui tiny image" *ngIf="book.images" [src]="book.images[0].url">
+                <div class="content">
+                    <div class="header">{{ book.title }}</div>
+                    <div class="description"> {{ book.subtitle }}</div>
+                    <div class="metadata">
               <span *ngFor="let author of book.authors; last as l">
                 {{ author.firstname }} {{ author.lastname }}<span *ngIf="!l">, </span>
               </span>
+                    </div>
+                    <div class="extra">ISBN {{ book.isbn }}</div>
+
+                    <div class="extra">Preis: {{ book.price }} €</div>
                 </div>
-                <div class="extra">ISBN {{ book.isbn }}</div>
-
-                <div class="extra">Preis: {{ book.price }} €</div>
-
             </div>
-        </div>
         </div>
     </div>
 

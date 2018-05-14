@@ -15,10 +15,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class OrderOverviewComponent implements OnInit {
   incart: Book[];
-
   neworder: Order = OrderFactory.empty();
-
-  newOrder = [];
 
   price_netto: number = 0;
   price_brutto: number = 0;
@@ -49,21 +46,6 @@ export class OrderOverviewComponent implements OnInit {
     return this.neworder.price_netto;
   }
 
-  /* buildOrderArray () {
-
-   this.curUserId = this.authService.getCurrentUserId();
-
-   const order: Order = OrderFactory.fromObject(this.incart);
-   order.price_netto = this.order.price_netto;
-   order.price_brutto = this.order.price_brutto;
-   order.user_id = this.curUserId;
-
-   this.bs.createOrder(order).subscribe(result = {
-   this.order = OrderFactory.empty();
-   this.incart = [];
-   }
-   }*/
-
   saveOrder() {
 
     this.curUserId = this.authService.getCurrentUserId();
@@ -82,11 +64,5 @@ export class OrderOverviewComponent implements OnInit {
       localStorage.removeItem('cart');
     });
   }
-
-  /*public setLocalStorage (incart) {
-   localStorage.setItem('cartlist', incart);
-   }
-   */
-
 
 }

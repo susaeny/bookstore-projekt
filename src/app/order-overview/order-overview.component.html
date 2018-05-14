@@ -1,68 +1,70 @@
 <h3>Übersicht deiner Bestellung</h3>
 
 <div class="ui middle aligned selection divided list">
-  <!--<a *ngFor="let book of incart" class="item bs-book-list-item" [book]="book"
-     [routerLink]="book.isbn">-->
+    <!--<a *ngFor="let book of incart" class="item bs-book-list-item" [book]="book"
+       [routerLink]="book.isbn">-->
 
-  <a *ngFor="let book of incart" class="item bs-book-list-item" [book]="book">
-    <!--<bs-book-list-item [book]="book"></bs-book-list-item>-->
-  </a>
+    <a *ngFor="let book of incart" class="item bs-book-list-item" [book]="book">
+        <!--<bs-book-list-item [book]="book"></bs-book-list-item>-->
+    </a>
 
-  <div *ngIf="incart.length >= 1">
-    <div class="ui section divider"></div>
+    <div *ngIf="incart.length >= 1">
+        <div class="ui section divider"></div>
 
 
-    <div class="ui right aligned grid">
-      <div *ngIf="incart.length >= 1" class="ui relaxed divided list right floated left aligned eight wide column">
-        <div class="item">
-          <div class="content">
-            <div class="header">Bücherpreis:</div>
-            <div class="right floated content">
-              <div class="description">{{ price_netto }} €</div>
+        <div class="ui right aligned grid">
+            <div *ngIf="incart.length >= 1"
+                 class="ui relaxed divided list right floated left aligned eight wide column">
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Bücherpreis:</div>
+                        <div class="right floated content">
+                            <div class="description">{{ price_netto }} €</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">Versandkosten:</div>
+                        <div class="right floated content">
+                            <div class="description">{{ deliveryFee }} €</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <h3 class="header">Gesamtpreis:</h3>
+                        <div class="right floated content">
+                            <div class="description">{{ neworder.price_brutto }} €</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="item">
-          <div class="content">
-            <div class="header">Versandkosten:</div>
-            <div class="right floated content">
-              <div class="description">{{ deliveryFee }} €</div>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <div class="content">
-            <h3 class="header">Gesamtpreis:</h3>
-            <div class="right floated content">
-              <div class="description">{{ neworder.price_brutto }} €</div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+        <div class="ui section divider"></div>
+
+
+        <a *ngIf="authService.isLoggedIn()" (click)="saveOrder()" class="ui right labeled green icon right floated">
+            <i class="right arrow icon"></i>
+            Kaufen
+        </a>
+
+        <a *ngIf="!authService.isLoggedIn()" class="ui right labeled blue icon right floated button"
+           routerLink="../login">
+            <i class="right arrow icon"></i>
+            Zum Bestellen bitte einloggen
+        </a>
+
+        <a routerLink="../books" class="ui left labeled red icon button">Weitere Bücher kaufen
+            <i class="left arrow icon"></i></a>
+
     </div>
 
-    <div class="ui section divider"></div>
 
-
-    <a *ngIf="authService.isLoggedIn()" (click)="saveOrder()" class="ui right labeled green icon right floated">
-      <i class="right arrow icon"></i>
-      Kaufen
-    </a>
-
-    <a *ngIf="!authService.isLoggedIn()" class="ui right labeled blue icon right floated button" routerLink="../login">
-      <i class="right arrow icon"></i>
-      Zum Bestellen bitte einloggen
-    </a>
-
-    <a routerLink="../books" class="ui left labeled red icon button">Weitere Bücher kaufen
-      <i class="left arrow icon"></i></a>
-
-  </div>
-
-
-  <div *ngIf="!incart" class="ui active dimmer">
-    <div class="ui large text loader">Daten werden geladen...</div>
-  </div>
-  <p *ngIf="incart && !incart.length">Es wurden keine Bücher in den Warenkorb gelegt</p>
+    <div *ngIf="!incart" class="ui active dimmer">
+        <div class="ui large text loader">Daten werden geladen...</div>
+    </div>
+    <p *ngIf="incart && !incart.length">Es wurden keine Bücher in den Warenkorb gelegt</p>
 
 </div>

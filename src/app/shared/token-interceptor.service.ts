@@ -5,14 +5,14 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    request = request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    });
+        request = request.clone({
+            setHeaders: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
 
-    return next.handle(request);
-  }
+        return next.handle(request);
+    }
 }
